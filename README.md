@@ -33,6 +33,7 @@ npx nx add @nx/react
 ```
 # Host 앱과 2개의 리모트 앱을 동시에 생성
 # 모듈 피더레이션 관련 자동 설정
+# bundler 선택화면에서 rapack 선택 : NX 21버전에서는 rspack을 사용함
 npx nx g @nx/react:host apps/host-app --remotes=app1,app2 --style=css --e2eTestRunner=none
 ```
 ### 여기까지 수행후 VSCode로 오픈
