@@ -366,10 +366,56 @@ npx nx serve app2
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
+---
+# 모듈 피더레이션 설정 구조 검토
+### Host Application 설정 (host-app)
+* apps/host-app/module-federation.config.ts
+```
+  const config: ModuleFederationConfig = {
+    name: 'host-app',
+    remotes: ['app1', 'app2'],  // 원격 마이크로프론트엔드 앱들을 등록
+  };
 
+  //추가로 host-app의 rspack.config.ts 파일을 검토할 것
+```
+### Remote Applications 설정 (app1, app2)
+* apps/app1/module-federation.config.ts
+```
+  const config: ModuleFederationConfig = {
+    name: 'app1',
+    exposes: {
+      './**Module**': './src/remote-entry.ts',  // 외부로 노출할 모듈 정의. 외부로 노출시킬 때의 이름은 Module
+    },
+  };
+```
+### Remote Entry 파일
+*  apps/app1/src/remote-entry.ts
+```
+// 메인 컴포넌트(App)를 외부로 공개,노출시킴
+export { default } from './app/app';  
+```
+### Host에서 Remote 모듈 동적 로딩
+* app/host-app/src/app/app.tsx
+```
+  //Remote Application에서 노출된 모듈의 이름(Module)을 이용해 import 수
+  const App1 = React.lazy(() => import('app1/Module'));
+  const App2 = React.lazy(() => import('app2/Module'));
+```
+---
+# 사용된 NX 구성 설정 요소
 
+### NX 플러그인 설정(nx.json 파일 참조)
+* @nx/module-federation 플러그인으로 모듈 페더레이션 지원
+* @nx/rspack/plugin으로 빌드 도구 설정
 
+### 패키지 의존성 (package.json)
+* @module-federation/enhanced: 향상된 모듈 페더레이션 기능
+* @nx/module-federation: Nx 모듈 페더레이션 플러그인
+* @rspack/core: 빠른 번들러
 
-
-
-
+### 아키텍처 패턴
+* Host: 다른 마이크로프론트엔드들을 조합하는 메인 앱
+* Remote: 독립적으로 개발/배포되는 마이크로프론트엔드
+* Dynamic Import: 런타임에 원격 모듈을 동적으로 로딩
+  - Lazy Loading 기법 사용
+* Bootstrap Pattern: 각 앱이 독립 실행 가능한 구조
