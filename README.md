@@ -369,6 +369,42 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ---
 # 모듈 피더레이션 설정 구조 검토
+### 각 앱의 project.json 파일 검토
+```
+// host-app 의 project.json
+{
+  "name": "host-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/host-app/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+**    "serve": {
+      "options": {
+        "port": 4200
+      }
+    }**
+  }
+}
+
+// app1, app2 의 project.json
+{
+  "name": "app1",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/app1/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+**    "serve": {
+      "options": {
+        "port": 4201
+      },
+      "dependsOn": ["host-app:serve"]**
+    }
+  }
+}
+```
+
 ### Host Application 설정 (host-app)
 * apps/host-app/module-federation.config.ts
 ```
@@ -402,6 +438,7 @@ export { default } from './app/app';
   const App1 = React.lazy(() => import('app1/Module'));
   const App2 = React.lazy(() => import('app2/Module'));
 ```
+
 ---
 # 사용된 NX 구성 설정 요소
 
