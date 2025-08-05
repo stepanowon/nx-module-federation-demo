@@ -182,7 +182,7 @@ function Stats() {
   return (
     <div style={{ padding: '10px', backgroundColor: '#f0fff0' }}>
       <h3>App2 스탯</h3>
-      <p>App2의 스탯 화면/p>
+      <p>App2의 스탯 화면</p>
       <ul>
         <li>사용자: 1,234</li>
         <li>성장율: +15%</li>
