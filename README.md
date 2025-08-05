@@ -379,11 +379,11 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
   "projectType": "application",
   "tags": [],
   "targets": {
-**    "serve": {
+    "serve": {
       "options": {
         "port": 4200
       }
-    }**
+    }
   }
 }
 
@@ -395,11 +395,11 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
   "projectType": "application",
   "tags": [],
   "targets": {
-**    "serve": {
+    "serve": {
       "options": {
         "port": 4201
       },
-      "dependsOn": ["host-app:serve"]**
+      "dependsOn": ["host-app:serve"]
     }
   }
 }
