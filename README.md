@@ -17,7 +17,7 @@ nx-module-federation-demo/
 ```
 ---
 # 실행 단계
-### NX 워크스페이스 초기화
+### NX 워크스페이스 초기화(powershell에서 수행)
 ```
 # 프로젝트 디렉토리 생성
 mkdir nx-module-federation-demo
@@ -36,7 +36,7 @@ npx nx add @nx/react
 # bundler 선택화면에서 rapack 선택 : NX 21버전에서는 rspack을 사용함
 npx nx g @nx/react:host apps/host-app --remotes=app1,app2 --style=css --e2eTestRunner=none
 ```
-### 여기까지 수행후 VSCode로 오픈
+# 여기까지 수행후 VSCode로 nx-module-federation-demo 폴더를 오픈함
 ---
 
 # 각 앱별 코드 수정 
