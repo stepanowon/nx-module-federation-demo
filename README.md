@@ -20,7 +20,7 @@ nx-module-federation-demo/
 ### NX 워크스페이스 초기화(powershell에서 수행)
 ```
 # Nx 워크스페이스 생성
-npx create-nx-workspace@21 . --preset=apps --name=nx-federation-demo --packageManager=npm --ci=skip
+npx create-nx-workspace@21 --preset=apps --name=nx-federation-demo --packageManager=npm --ci=skip
 cd nx-federation-demo
 # NX용 React 플러그인 추가
 npx nx@21 add @nx/react
