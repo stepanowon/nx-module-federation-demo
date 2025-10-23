@@ -34,7 +34,7 @@ npx nx@21 add @nx/react
 # bundler 선택화면에서 rspack 선택 : NX 21버전에서는 rspack을 사용함
 npx nx@21 g @nx/react:host apps/host-app --remotes=app1 --remotes=app2 --style=css --e2eTestRunner=none
 ```
-# 여기까지 수행후 VSCode로 nx-module-federation-demo 폴더를 오픈함
+# 여기까지 수행후 VSCode로 nx-federation-demo 폴더를 오픈함
 ---
 
 # 각 앱별 코드 수정 
@@ -347,7 +347,7 @@ export default App;
 * host-app 실행
 ```
 # 다음 명령어를 실행하면 리모트 앱(app1, app2)도 함께 실행됨
-npx nx serve host-app
+npx nx@21 serve host-app
 # http://localhost:4200으로 테스트
 ```
 
@@ -355,10 +355,10 @@ npx nx serve host-app
 ```
 # 리모트 앱 중 하나를 실행하면 호스트 앱이 함께 실행됨
 # http://localhost:4201 로 독립실행 테스트
-npx nx serve app1
+npx nx@21 serve app1
 
 # http://localhost:4202 로 독립실행 테스트
-npx nx serve app2
+npx nx@21 serve app2
 ```
 ### 윈도우 파워셸에서 혹시 실행되지 않으면 다음 명령어 실행
 ```
